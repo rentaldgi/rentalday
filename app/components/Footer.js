@@ -31,7 +31,7 @@ export default function Footer() {
           {/* Ikon Media Sosial */}
           <div className="flex space-x-4">
             <Link
-              href="https://www.tiktok.com/@bandungrider?_t=ZS-8yJWY2aXeWm&_r=1"
+              href="https://www.tiktok.com/@rentaldaybandung?_t=ZS-8ymvik1MGuH&_r=1"
               target="_blank"
               rel="noopener noreferrer"
             >
