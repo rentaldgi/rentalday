@@ -37,23 +37,17 @@ export default function HomePage() {
             alt="Scooter Hero"
             layout="fill"
             objectFit="cover"
-            className="opacity-30 -z-10"
+            className="opacity-30 bg-cover"
           />
-
           <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto">
             <div className="w-full md:w-1/2 flex justify-center md:justify-start mb-6 md:mb-0">
-              {/* <Image
+              <Image
                 src="/images/motor2+bayangan.png"
                 alt="Motor dengan Bayangan"
+                width={500} // ← bisa kamu sesuaikan
+                height={300} // ← sesuaikan juga dengan rasio gambarnya
                 className="w-[200px] sm:w-[280px] md:w-[400px] lg:w-[500px]"
-              /> */}
-              <Image
-              src="/images/motor2+bayangan.png"
-              alt="Motor dengan Bayangan"
-              width={500} // ← bisa kamu sesuaikan
-              height={300} // ← sesuaikan juga dengan rasio gambarnya
-              className="w-[200px] sm:w-[280px] md:w-[400px] lg:w-[500px]"
-            />
+              />
             </div>
             <div className="w-full md:w-1/2 text-center md:text-right md:pr-28">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold italic leading-tight">
@@ -81,7 +75,6 @@ export default function HomePage() {
             </div>
           </div>
 
-
           <div className="absolute bottom-0 left-0 w-full bg-black/80 text-white py-5 px-4 md:px-10 ">
             <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               {[
@@ -98,12 +91,12 @@ export default function HomePage() {
                     className="w-10 h-10"
                   /> */}
                   <Image
-                  src={`/images/${icon}`}
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="w-10 h-10"
-                />
+                    src={`/images/${icon}`}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="w-10 h-10"
+                  />
                   <p className="text-sm md:text-base font-medium">{label}</p>
                 </div>
               ))}
@@ -111,79 +104,79 @@ export default function HomePage() {
           </div>
         </section>
 
-              {/* --- Section Artikel Terbaru --- */}
-<section className="bg-[#FFDD00] px-4 sm:px-8 md:px-20 py-12">
-  <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6">
-    {/* Artikel Besar */}
-    {articles[0] && (
-      <div className="bg-white rounded-xl shadow-lg w-full lg:w-[2100px] h-auto lg:h-[500px] overflow-hidden">
-        <div className="w-full h-64 lg:h-80 relative">
-          <Image
-            src={`https://backend.ptdahliaglobalindo.id${articles[0].thumbnail}`}
-            alt={articles[0].title}
-            className="w-full h-full object-cover"
-            width={500}
-            height={500}
-          />
-          <Link
-            href={`/artikel/${articles[0].slug}`}
-            className="absolute bottom-3 right-3 bg-white text-sm text-black px-4 py-1 rounded-full shadow hover:bg-gray-200"
-          >
-            Lihat Detail Artikel
-          </Link>
-        </div>
-        <div className="p-4">
-          <h3 className="text-lg font-bold mb-2 text-black">
-            {articles[0].title}
-          </h3>
-          <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
-            {articles[0].content}
-          </p>
-        </div>
-      </div>
-    )}
-
-    {/* Dua Artikel Kecil - Mobile: Seperti Artikel Besar, Desktop: Tetap Kecil */}
-    <div className="w-full flex flex-col gap-4">
-      {[articles[1], articles[2]].map(
-        (item, index) =>
-          item && (
-            <Link
-              key={index}
-              href={`/artikel/${item.slug}`}
-              className="bg-white rounded-xl overflow-hidden shadow-lg flex flex-col w-full"
-            >
-              <div className="w-full h-64 lg:h-30 relative">
-                <Image
-                  src={`https://backend.ptdahliaglobalindo.id${item.thumbnail}`}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                  width={500}
-                  height={500}
-                />
+        {/* --- Section Artikel Terbaru --- */}
+        <section className="bg-[#FFDD00] px-4 sm:px-8 md:px-20 py-12">
+          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6">
+            {/* Artikel Besar */}
+            {articles[0] && (
+              <div className="bg-white rounded-xl shadow-lg w-full lg:w-[2100px] h-auto lg:h-[500px] overflow-hidden">
+                <div className="w-full h-64 lg:h-80 relative">
+                  <Image
+                    src={`https://backend.ptdahliaglobalindo.id${articles[0].thumbnail}`}
+                    alt={articles[0].title}
+                    className="w-full h-full object-cover"
+                    width={500}
+                    height={500}
+                  />
+                  <Link
+                    href={`/artikel/${articles[0].slug}`}
+                    className="absolute bottom-3 right-3 bg-white text-sm text-black px-4 py-1 rounded-full shadow hover:bg-gray-200"
+                  >
+                    Lihat Detail Artikel
+                  </Link>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold mb-2 text-black">
+                    {articles[0].title}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
+                    {articles[0].content}
+                  </p>
+                </div>
               </div>
-              <div className="p-4">
-                <h4 className="text-base lg:text-sm font-semibold text-black line-clamp-2 mb-1">
-                  {item.title}
-                </h4>
-                <p className="text-sm lg:text-xs text-gray-600 line-clamp-2">
-                  {item.content}
-                </p>
-              </div>
-            </Link>
-          )
-      )}
+            )}
 
-      {/* Tombol Jelajahi Artikel */}
-      <Link
-        href="/artikel"
-        className="bg-white text-center text-black font-semibold py-2 rounded-xl shadow hover:bg-yellow-100 mt-2"
-      >
-        Jelajahi Artikel
-      </Link>
-    </div>
-  </div>
-</section>
+            {/* Dua Artikel Kecil - Mobile: Seperti Artikel Besar, Desktop: Tetap Kecil */}
+            <div className="w-full flex flex-col gap-4">
+              {[articles[1], articles[2]].map(
+                (item, index) =>
+                  item && (
+                    <Link
+                      key={index}
+                      href={`/artikel/${item.slug}`}
+                      className="bg-white rounded-xl overflow-hidden shadow-lg flex flex-col w-full"
+                    >
+                      <div className="w-full h-64 lg:h-30 relative">
+                        <Image
+                          src={`https://backend.ptdahliaglobalindo.id${item.thumbnail}`}
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                          width={500}
+                          height={500}
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="text-base lg:text-sm font-semibold text-black line-clamp-2 mb-1">
+                          {item.title}
+                        </h4>
+                        <p className="text-sm lg:text-xs text-gray-600 line-clamp-2">
+                          {item.content}
+                        </p>
+                      </div>
+                    </Link>
+                  )
+              )}
+
+              {/* Tombol Jelajahi Artikel */}
+              <Link
+                href="/artikel"
+                className="bg-white text-center text-black font-semibold py-2 rounded-xl shadow hover:bg-yellow-100 mt-2"
+              >
+                Jelajahi Artikel
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* Produk Highlight */}
         <section className="bg-[#B40000] py-10 px-6 md:px-20 text-white">
@@ -224,11 +217,11 @@ export default function HomePage() {
 
         {/* Kenapa Harus Memilih */}
         <section className="bg-[#FFDD00] text-black px-4 py-10 md:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-snug">
-              Kenapa Harus Memilih <br /> Rentalday?
-            </h2>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-snug">
+                Kenapa Harus Memilih <br /> Rentalday?
+              </h2>
               {/* tabel isi  */}
               <div className="flex flex-col gap-4">
                 {[
@@ -247,7 +240,7 @@ export default function HomePage() {
                 ].map(([icon, text], i) => (
                   <div
                     key={i}
-                     className="bg-white text-black p-3 rounded shadow flex items-center gap-3 h-[90px] w-full max-w-full sm:max-w-[480px]"
+                    className="bg-white text-black p-3 rounded shadow flex items-center gap-3 h-[90px] w-full max-w-full sm:max-w-[480px]"
                   >
                     {/* <Image src={`/images/${icon}`} alt="" className="w-16 h-16 object-contain" /> */}
                     <Image
@@ -257,8 +250,10 @@ export default function HomePage() {
                       height={64}
                       className="w-16 h-16 object-contain"
                     />
-                  <p className="text-base font-semibold sm:text-lg leading-snug">{text}</p>
-                </div>
+                    <p className="text-base font-semibold sm:text-lg leading-snug">
+                      {text}
+                    </p>
+                  </div>
                 ))}
               </div>
             </div>
@@ -281,8 +276,10 @@ export default function HomePage() {
                     height={64}
                     className="w-16 h-16 object-contain"
                   />
-                <p className="text-base font-semibold sm:text-lg leading-snug">{text}</p>
-              </div>
+                  <p className="text-base font-semibold sm:text-lg leading-snug">
+                    {text}
+                  </p>
+                </div>
               ))}
             </div>
           </div>
@@ -321,15 +318,15 @@ export default function HomePage() {
                 />
               ))} */}
               {[1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((n, i) => (
-  <Image
-    key={i}
-    src={`/images/RD-motor${n}.png`}
-    alt={`Motor ${n}`}
-    width={200}      
-    height={150}     
-    className="h-20 sm:h-24 md:h-28 lg:h-36 w-auto"  
-  />
-))}
+                <Image
+                  key={i}
+                  src={`/images/RD-motor${n}.png`}
+                  alt={`Motor ${n}`}
+                  width={200}
+                  height={150}
+                  className="h-20 sm:h-24 md:h-28 lg:h-36 w-auto"
+                />
+              ))}
             </div>
           </div>
 

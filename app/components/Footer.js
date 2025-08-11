@@ -1,7 +1,7 @@
 "use client";
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -58,30 +58,66 @@ export default function Footer() {
               />
             </Link>
             {/* Instagram */}
-              <Link
-                href="https://www.instagram.com/rentalday.id?igsh=ZzRzb3hybDNldDR3"
-                aria-label="Instagram"
-              >
-                <Image
-                  src="/images/icon_ig.png"
-                  alt="Instagram"
-                  width={24}
-                  height={24}
-                  className="w-6 h-6"
-                />
-              </Link>
+            <Link
+              href="https://www.instagram.com/rentalday.id?igsh=ZzRzb3hybDNldDR3"
+              aria-label="Instagram"
+            >
+              <Image
+                src="/images/icon_ig.png"
+                alt="Instagram"
+                width={24}
+                height={24}
+                className="w-6 h-6"
+              />
+            </Link>
           </div>
 
           {/* Logo Bank */}
-          <div className="absolute bottom-24 left-0 bg-[#FFDD00] py-2 pr-4 pl-2 rounded-full flex items-start gap-4 shadow-md z-10">
-            <Image src="/images/pm_bni.png" alt="BNI" width={24} height={24} className="w-8 h-8 object-contain" />
-            <Image src="/images/pm_bca.png" alt="BCA" width={24} height={24} className="w-8 h-8 object-contain" />
-            <Image src="/images/pm_mandiri.png" alt="Mandiri" width={24} height={24} className="w-8 h-8 object-contain" />
-            <Image src="/images/pm_qris.png" alt="QRIS" width={24} height={24} className="w-8 h-8 object-contain" />
-            <Image src="/images/pm_mastercard.png" alt="Mastercard" width={24} height={24} className="w-8 h-8 object-contain" />
-            <Image src="/images/pm_visa.png" alt="Visa" width={24} height={24} className="w-8 h-8 object-contain" />
+          <div className="mt-0 bg-[#FFDD00] py-2 px-4 rounded-full flex flex-wrap items-center justify-center gap-4 shadow-md z-10 w-fit md:w-auto">
+            <Image
+              src="/images/pm_bni.png"
+              alt="BNI"
+              width={24}
+              height={24}
+              className="w-8 h-8 object-contain"
+            />
+            <Image
+              src="/images/pm_bca.png"
+              alt="BCA"
+              width={24}
+              height={24}
+              className="w-8 h-8 object-contain"
+            />
+            <Image
+              src="/images/pm_mandiri.png"
+              alt="Mandiri"
+              width={24}
+              height={24}
+              className="w-8 h-8 object-contain"
+            />
+            <Image
+              src="/images/pm_qris.png"
+              alt="QRIS"
+              width={24}
+              height={24}
+              className="w-8 h-8 object-contain"
+            />
+            <Image
+              src="/images/pm_mastercard.png"
+              alt="Mastercard"
+              width={24}
+              height={24}
+              className="w-8 h-8 object-contain"
+            />
+            <Image
+              src="/images/pm_visa.png"
+              alt="Visa"
+              width={24}
+              height={24}
+              className="w-8 h-8 object-contain"
+            />
           </div>
-          </div>
+        </div>
 
         {/* Kolom 2: Halaman + Kontak */}
         <div className="grid grid-cols-2 gap-4 text-sm">
@@ -89,11 +125,31 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-gray-800 mb-2">Halaman</h4>
             <ul className="space-y-1">
-              <li><Link href="/" className="hover:text-yellow-500">Beranda</Link></li>
-              <li><Link href="/Linkrtikel" className="hover:text-yellow-500">Artikel</Link></li>
-              <li><Link href="/DaftarUnit" className="hover:text-yellow-500">Daftar Motor</Link></li>
-              <li><Link href="/Testimoni" className="hover:text-yellow-500">Testimoni</Link></li>
-              <li><Link href="/Kontak" className="hover:text-yellow-500">Kontak</Link></li>
+              <li>
+                <Link href="/" className="hover:text-yellow-500">
+                  Beranda
+                </Link>
+              </li>
+              <li>
+                <Link href="/Linkrtikel" className="hover:text-yellow-500">
+                  Artikel
+                </Link>
+              </li>
+              <li>
+                <Link href="/DaftarUnit" className="hover:text-yellow-500">
+                  Daftar Motor
+                </Link>
+              </li>
+              <li>
+                <Link href="/Testimoni" className="hover:text-yellow-500">
+                  Testimoni
+                </Link>
+              </li>
+              <li>
+                <Link href="/Kontak" className="hover:text-yellow-500">
+                  Kontak
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -101,7 +157,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-gray-800 mb-2">Kontak Kami</h4>
             <p className="mb-1">
-              <a href="mailto:rentaldaybandung@gmail.com" className="hover:text-yellow-500">
+              <a
+                href="mailto:rentaldaybandung@gmail.com"
+                className="hover:text-yellow-500"
+              >
                 rentaldaybandung@gmail.com
               </a>
             </p>
@@ -119,7 +178,7 @@ export default function Footer() {
             <p className="text-xs text-gray-600">Admin 2</p>
             <p>
               <Link href="tel:+6285136436020" className="hover:text-yellow-500">
-                (+62) 851-3643-6020 
+                (+62) 851-3643-6020
               </Link>
             </p>
             <p className="text-xs text-gray-600">Admin 3</p>
@@ -146,7 +205,8 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="bg-[#FFDD00] py-3 text-center text-xs text-black font-medium">
-        © 2025 PT Dahlia Global Indo. Seluruh hak cipta dilindungi undang-undang.
+        © 2025 PT Dahlia Global Indo. Seluruh hak cipta dilindungi
+        undang-undang.
       </div>
     </footer>
   );
@@ -261,7 +321,7 @@ export default function Footer() {
 //               Kec. Cicendo, Kota Bandung, Jawa Barat 40171, Indonesia
 //             </Link>
 //           </p>
-          
+
 //         </div>
 //       </div>
 

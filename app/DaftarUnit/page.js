@@ -10,7 +10,11 @@ import AnimatePage from "../components/AnimatePage";
 export default function DaftarUnit() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilter, setShowFilter] = useState(false);
-  const [filters, setFilters] = useState({ harga: "", daerah: "", kapasitas: "" });
+  const [filters, setFilters] = useState({
+    harga: "",
+    daerah: "",
+    kapasitas: "",
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
@@ -26,16 +30,21 @@ export default function DaftarUnit() {
 
     const hargaMatch = !filters.harga || unit.harga === filters.harga;
     const daerahMatch = !filters.daerah || unit.daerah === filters.daerah;
-    const kapasitasMatch = !filters.kapasitas || unit.kapasitas === filters.kapasitas;
+    const kapasitasMatch =
+      !filters.kapasitas || unit.kapasitas === filters.kapasitas;
 
     return textMatch && hargaMatch && daerahMatch && kapasitasMatch;
   });
 
   const totalPages = Math.ceil(filteredUnits.length / itemsPerPage);
-  const paginatedUnits = filteredUnits.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const paginatedUnits = filteredUnits.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
-  const handleNext = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
+  const handleNext = () =>
+    currentPage < totalPages && setCurrentPage(currentPage + 1);
 
   // ✅ Diperbaiki: harga diurut dari terendah
   const getOptions = (key) => {
@@ -67,8 +76,18 @@ export default function DaftarUnit() {
                 className="w-full py-2 pl-4 pr-10 rounded-l-full outline-none border border-[#FFE644] text-red-800 bg-white placeholder-yellow-600 focus:ring-2 focus:ring-white text-sm sm:text-base"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-red-600">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
                 </svg>
               </span>
             </div>
@@ -76,8 +95,18 @@ export default function DaftarUnit() {
               onClick={() => setShowFilter(!showFilter)}
               className="bg-white text-red-700 p-2 border border-[#FFE644] rounded-r-full"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4h18M6 8h12M4 12h16M8 16h8M10 20h4" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 4h18M6 8h12M4 12h16M8 16h8M10 20h4"
+                />
               </svg>
             </button>
           </div>
@@ -92,11 +121,17 @@ export default function DaftarUnit() {
                       key={key}
                       className="bg-white text-red-700 px-4 py-2 rounded-full shadow text-sm focus:outline-none flex-1 min-w-[100px]"
                       value={filters[key]}
-                      onChange={(e) => setFilters({ ...filters, [key]: e.target.value })}
+                      onChange={(e) =>
+                        setFilters({ ...filters, [key]: e.target.value })
+                      }
                     >
-                      <option value="">{key.charAt(0).toUpperCase() + key.slice(1)}</option>
+                      <option value="">
+                        {key.charAt(0).toUpperCase() + key.slice(1)}
+                      </option>
                       {getOptions(key).map((opt) => (
-                        <option key={opt} value={opt}>{opt}</option>
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
                       ))}
                     </select>
                   ))}
@@ -127,19 +162,27 @@ export default function DaftarUnit() {
           )}
 
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-4 mt-10">
+            <div className="flex justify-center items-center gap-4 mt-10 text-black">
               <button
                 onClick={handlePrev}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition ${
+                  currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
                 &lt;
               </button>
-              <span className="text-sm font-semibold">{currentPage} / {totalPages}</span>
+              <span className="text-sm font-semibold">
+                {currentPage} / {totalPages}
+              </span>
               <button
                 onClick={handleNext}
                 disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition ${
+                  currentPage === totalPages
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
               >
                 &gt;
               </button>

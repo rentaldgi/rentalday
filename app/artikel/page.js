@@ -54,7 +54,10 @@ export default function Artikel() {
     const parts = text.split(regex);
     return parts.map((part, index) =>
       part.toLowerCase() === keyword.toLowerCase() ? (
-        <span key={index} className="bg-[#C08931] text-white font-semibold px-1 rounded">
+        <span
+          key={index}
+          className="bg-[#C08931] text-white font-semibold px-1 rounded"
+        >
           {part}
         </span>
       ) : (
@@ -70,10 +73,14 @@ export default function Artikel() {
   const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentArticles = filteredArticles.slice(indexOfFirstItem, indexOfLastItem);
+  const currentArticles = filteredArticles.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
 
   const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
-  const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const handleNext = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
   if (loading) {
     return (
@@ -94,9 +101,11 @@ export default function Artikel() {
               <h1 className="text-2xl md:text-3xl font-bold text-black mb-4">
                 ARTIKEL KAMI
               </h1>
-              <p className="text-gray-600 text-sm md:text-base max-w-2xl text-justify leading-relaxed tracking-wide">
-                Pixelnesia aktif menginformasikan berbagai kegiatan untuk
-                <br />
+              <p className="text-gray-600 text-sm md:text-base max-w-2xl text-left leading-relaxed tracking-wide">
+                RentalDay aktif menginformasikan berbagai kegiatan untuk
+                <span className="hidden md:inline">
+                  <br />
+                </span>{" "}
                 meningkatkan kualitas layanan di bidang rental
               </p>
             </div>
@@ -131,7 +140,7 @@ export default function Artikel() {
                 <Link href={`/artikel/${article.slug}`} key={article.id}>
                   <div className="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 shadow-xl flex flex-col h-[320px]">
                     <div className="w-full h-40 relative overflow-hidden">
-                       <Image
+                      <Image
                         src={`https://backend.ptdahliaglobalindo.id${article.thumbnail}`}
                         alt={article.title}
                         className="w-full h-full object-cover absolute inset-0"
@@ -179,7 +188,9 @@ export default function Artikel() {
                 onClick={handleNext}
                 disabled={currentPage === totalPages}
                 className={`px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition ${
-                  currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
+                  currentPage === totalPages
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
                 }`}
               >
                 &gt;

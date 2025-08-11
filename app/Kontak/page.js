@@ -52,11 +52,14 @@ const Kontak = () => {
     setIsSending(true);
 
     try {
-      const response = await fetch("https://backend.ptdahliaglobalindo.id/kontak", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const response = await fetch(
+        "https://backend.ptdahliaglobalindo.id/kontak",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        }
+      );
 
       const result = await response.json();
 
@@ -70,11 +73,17 @@ const Kontak = () => {
           source: "Website Sewa Apartemen",
         });
       } else {
-        setNotif({ message: result.message || "Gagal mengirim pesan", type: "error" });
+        setNotif({
+          message: result.message || "Gagal mengirim pesan",
+          type: "error",
+        });
       }
     } catch (error) {
       console.error("Error:", error);
-      setNotif({ message: "Terjadi kesalahan saat mengirim pesan.", type: "error" });
+      setNotif({
+        message: "Terjadi kesalahan saat mengirim pesan.",
+        type: "error",
+      });
     } finally {
       setIsSending(false);
     }
@@ -109,16 +118,16 @@ const Kontak = () => {
             </p>
           </div>
           {/* Judul Kontak */}
-        <div className="text-center md:text-center hidden md:block">
-          <h2 className="text-2xl font-bold text-black">Kontak Kami</h2>
-        </div>
+          <div className="text-center md:text-center hidden md:block">
+            <h2 className="text-2xl font-bold text-black">Kontak Kami</h2>
+          </div>
         </div>
       </section>
 
       {/* Form */}
       <section className="bg-[#EECE21] mt-12 px-6 md:px-20 py-14">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-          <form onSubmit={handleSubmit} className="space-y-4 z-20">
+          <form onSubmit={handleSubmit} className="space-y-4 z-20 text-black">
             <div className="flex flex-col md:flex-row gap-4">
               <input
                 type="text"
@@ -189,15 +198,15 @@ const Kontak = () => {
       </section>
 
       {/* Sosial Media & Maps Section */}
-        <section className="bg-[url('/images/RD-bg_kontakkami.png')] bg-cover bg-center py-16 px-6 text-white -mt-5">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              {/* Judul */}
-              <div className="text-center md:text-left">
-                <h2 className="text-3xl sm:text-4xl font-bold leading-tight">
-                  Mari Kunjungi Sosial <br />
-                  Media Rentalday
-                </h2>
+      <section className="bg-[url('/images/RD-bg_kontakkami.png')] bg-cover bg-center py-16 px-6 text-white -mt-5">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Judul */}
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl sm:text-4xl font-bold leading-tight">
+                Mari Kunjungi Sosial <br />
+                Media Rentalday
+              </h2>
             </div>
             <div className="flex flex-col gap-4 w-full max-w-sm mx-auto md:mx-0">
               <SosialMediaDropdown />
