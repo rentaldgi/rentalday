@@ -1,14 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
-const SosialMediaDropdown = () => {
+const SosialMediaDropdown = ({ entity }) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [admins, setAdmins] = useState([]);
 
   const toggleDropdown = (dropdownName) => {
     setActiveDropdown((prev) => (prev === dropdownName ? null : dropdownName));
+  };
+
+  useEffect(() => {
+    const fetchAdmins = async () => {
+      try {
+        const res = await fetch("https://backend.ptdahliaglobalindo.id/whatsapp-admins"); // backend lokal
+        const data = await res.json();
+        setAdmins(data);
+      } catch (err) {
+        console.error("Failed to load admins", err);
+      }
+    };
+    fetchAdmins();
+  }, []);
+
+  const handleWhatsappClick = async (admin) => {
+    try {
+      await fetch("https://backend.ptdahliaglobalindo.id/whatsapp-clicks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          adminId: admin.id,
+          entity: admin.entity,
+        }),
+      });
+
+      window.open(`https://wa.me/${admin.phoneNumber}`, "_blank");
+    } catch (err) {
+      console.error("Error logging click", err);
+      window.open(`https://wa.me/${admin.phoneNumber}`, "_blank");
+    }
   };
 
   return (
@@ -30,74 +61,25 @@ const SosialMediaDropdown = () => {
         </button>
         <div className={`transition-all duration-300 ease-in-out overflow-hidden ${activeDropdown === "whatsapp" ? "max-h-[500px]" : "max-h-0"}`}>
           <div className="px-4 pb-4 pt-2 text-black space-y-4 text-sm">
-            {/* Bandung */}
-            <div>
-              <div className="font-semibold">Admin 1</div>
-              <Link
-              href="https://wa.me/6285724785060"
-              target="_blank"
-              className="inline-block bg-green-600 text-white px-4 py-2 rounded-full mt-1 text-sm"
-            >
-              (+62) 857-2478-5060
-            </Link>
-
-            </div>
-            <hr className="border-t border-green-400" />
-
-            {/* Bandung , Malang */}
-            <div>
-              <div className="font-semibold">Admin 2</div>
-              <Link
-                href="https://wa.me/6287825171899"
-                target="_blank"
-                className="inline-block bg-green-600 text-white px-4 py-2 rounded-full mt-1 text-sm"
-              >
-                (+62) 878-2517-1899
-              </Link>
-            </div>
-            <hr className="border-t border-green-400" />
-
-             {/* Bandung */}
-            <div>
-              <div className="font-semibold">Admin 3</div>
-              <Link
-                href="https://wa.me/6285136436020"
-                target="_blank"
-                className="inline-block bg-green-600 text-white px-4 py-2 rounded-full mt-1 text-sm"
-              >
-                (+62) 851-3643-6020
-              </Link>
-            </div>
-            <hr className="border-t border-green-400" />
-
-            {/* Purwokerto */}
-            {/* <div>
-              <div className="font-semibold">Purwokerto</div>
-              <Link
-                href="https://wa.me/6288010458655"
-                target="_blank"
-                className="inline-block bg-green-600 text-white px-4 py-2 rounded-full mt-1 text-sm"
-              >
-                (+62) 088 0104 58655
-              </Link>
-            </div>
-            <hr className="border-t border-green-400" /> */}
-
-            {/* Malang */}
-            {/* <div>
-              <div className="font-semibold">Malang</div>
-              <Link
-                href="https://wa.me/6288010458655"
-                target="_blank"
-                className="inline-block bg-green-600 text-white px-4 py-2 rounded-full mt-1 text-sm"
-              >
-                (+62) 088 0104 58655
-              </Link>
-            </div> */}
+            {admins
+              .filter(admin => admin.entity === entity) // filter per project entity
+              .map(admin => (
+                <div key={admin.id}>
+                  <div className="font-semibold">{admin.name}</div>
+                  <button
+                    onClick={() => handleWhatsappClick(admin)}
+                    className="inline-block bg-green-600 text-white px-4 py-2 rounded-full mt-1 text-sm"
+                  >
+                    (+62) {admin.phoneNumber}
+                  </button>
+                  <hr className="border-t border-green-400 my-2" />
+                </div>
+              ))}
           </div>
         </div>
       </div>
 
+      {/* TikTok dan Instagram tetap statis */}
       {/* TikTok */}
       <div className="w-full max-w-xs bg-white rounded-xl shadow overflow-hidden">
         <button
@@ -114,25 +96,12 @@ const SosialMediaDropdown = () => {
         </button>
         <div className={`transition-all duration-300 ease-in-out overflow-hidden ${activeDropdown === "tiktok" ? "max-h-[500px]" : "max-h-0"}`}>
           <div className="px-4 pb-4 pt-2 text-black space-y-4 text-sm">
-            {[
-              { area: "Bandung ( Mahasiswa )", users: [{ handle: "@rentalday.student", link: "https://www.tiktok.com/@rentalday.student?_t=ZS-8yJZ2827RqR&_r=1" }] },
-              { area: "Bandung Cabang 1", users: [{ handle: "@rentaldaybandung", link: "https://www.tiktok.com/@rentaldaybandung?_t=ZS-8yJYwPGwruJ&_r=1" }] },
-              { area: "Bandung Cabang 2", users: [{ handle: "@bandungrider", link: "https://www.tiktok.com/@bandungrider?_t=ZS-8yJYpA2TDbm&_r=1" }] },
-            ].map((region, index) => (
+            {[{ area: "Bandung ( Mahasiswa )", users: [{ handle: "@rentalday.student", link: "https://www.tiktok.com/@rentalday.student" }] }].map((region, index) => (
               <div key={index}>
-                {index > 0 && <hr className="border-t border-gray-300 my-2" />}
                 <div className="font-semibold mb-1">{region.area}</div>
                 <div className="flex flex-wrap gap-2">
                   {region.users.map((user, idx) => (
-                    <a
-                      key={idx}
-                      href={user.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-black text-white px-4 py-1 rounded-full text-xs hover:underline"
-                    >
-                      {user.handle}
-                    </a>
+                    <a key={idx} href={user.link} target="_blank" rel="noopener noreferrer" className="bg-black text-white px-4 py-1 rounded-full text-xs hover:underline">{user.handle}</a>
                   ))}
                 </div>
               </div>
@@ -157,26 +126,12 @@ const SosialMediaDropdown = () => {
         </button>
         <div className={`transition-all duration-300 ease-in-out overflow-hidden ${activeDropdown === "instagram" ? "max-h-[500px]" : "max-h-0"}`}>
           <div className="px-4 pb-4 pt-2 text-black space-y-4 text-sm">
-            {[
-              { area: "Bandung ( Mahasiswa )", users: [{ handle: "@rentalday.student", link: "https://instagram.com/rentalday.student" }] },
-              { area: "Bandung Cabang 1", users: [{ handle: "@rentalday.id", link: "https://www.instagram.com/rentalday.id?igsh=ZzRzb3hybDNldDR3" }] },
-              { area: "Bandung Cabang 2", users: [{ handle: "@rentalday.molis", link: "https://www.instagram.com/rentalday.molis?igsh=a3ZqaDFkaWo5ZXFv" }] },
-              { area: "Malang", users: [{ handle: "@rentalday.pwt", link: "https://www.instagram.com/rentalday.pwt?igsh=aHd5Z3QyaXVtcXM2" }] },
-            ].map((region, index) => (
+            {[{ area: "Bandung ( Mahasiswa )", users: [{ handle: "@rentalday.student", link: "https://instagram.com/rentalday.student" }] }].map((region, index) => (
               <div key={index}>
-                {index > 0 && <hr className="border-t border-gray-300 my-2" />}
                 <div className="font-semibold mb-1">{region.area}</div>
                 <div className="flex flex-wrap gap-2">
                   {region.users.map((user, idx) => (
-                    <a
-                      key={idx}
-                      href={user.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-pink-500 text-white px-4 py-1 rounded-full text-xs hover:underline"
-                    >
-                      {user.handle}
-                    </a>
+                    <a key={idx} href={user.link} target="_blank" rel="noopener noreferrer" className="bg-pink-500 text-white px-4 py-1 rounded-full text-xs hover:underline">{user.handle}</a>
                   ))}
                 </div>
               </div>

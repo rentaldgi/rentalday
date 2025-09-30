@@ -14,7 +14,7 @@ const Kontak = () => {
     telepon: "",
     email: "",
     pesan: "",
-    source: "Website Sewa Apartemen",
+    source: "Website Sewa Motor",
   });
 
   const [errors, setErrors] = useState({});
@@ -70,7 +70,7 @@ const Kontak = () => {
           telepon: "",
           email: "",
           pesan: "",
-          source: "Website Sewa Apartemen",
+          source: "Website Sewa Motor",
         });
       } else {
         setNotif({
@@ -209,7 +209,7 @@ const Kontak = () => {
               </h2>
             </div>
             <div className="flex flex-col gap-4 w-full max-w-sm mx-auto md:mx-0">
-              <SosialMediaDropdown />
+              <SosialMediaDropdown entity="RENTAL_MOTOR" />
             </div>
           </div>
           <div className="mt-16">
