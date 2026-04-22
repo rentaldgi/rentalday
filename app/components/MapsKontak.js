@@ -15,8 +15,8 @@ const locations = [
     embedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126842.24383196414!2d112.58486129879577!3d-7.964686213497913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62829275d586f%3A0xf7e8d244f8c06ef3!2sJl.%20Puntadewa%20III%20No.14%2C%20Polehan%2C%20Kec.%20Blimbing%2C%20Kota%20Malang%2C%20Jawa%20Timur%2065121!5e0!3m2!1sid!2sid!4v1721890255082!5m2!1sid!2sid",
     alamat:
-      "Jl. Puntadewa III No.14, Polehan, Kec. Blimbing, Kota Malang, Jawa Timur 65121",
-    link: "https://maps.app.goo.gl/93PLF8mS9f9jTNj59?g_st=com.google.maps.preview.copy",
+      "Jl. Kalimosodo IV no 7, Polehan, Blimbing, Kota Malang, Jawa Timur 65121",
+    link: "https://maps.app.goo.gl/QJvtPyvVrSzYGjH86?g_st=com.google.maps.preview.copy",
   },
 ];
 
