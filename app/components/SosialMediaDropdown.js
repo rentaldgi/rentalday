@@ -94,14 +94,46 @@ const SosialMediaDropdown = ({ entity }) => {
             &#9650;
           </span>
         </button>
-        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${activeDropdown === "tiktok" ? "max-h-[500px]" : "max-h-0"}`}>
+
+        <div className={`transition-all duration-300 overflow-hidden ${activeDropdown === "tiktok" ? "max-h-[500px]" : "max-h-0"}`}>
           <div className="px-4 pb-4 pt-2 text-black space-y-4 text-sm">
-            {[{ area: "Bandung ( Mahasiswa )", users: [{ handle: "@rentalday.student", link: "https://www.tiktok.com/@rentalday.student" }] }].map((region, index) => (
+            {[
+              {
+                area: "Bandung",
+                users: [
+                  { handle: "@rentaldaybandung", link: "https://www.tiktok.com/@rentaldaybandung" },
+                  { handle: "@bandungrider", link: "https://www.tiktok.com/@bandungrider" },
+                  { handle: "@minrental.bandung", link: "https://www.tiktok.com/@minrental.bandung" },
+                ],
+              },
+              {
+                area: "Malang",
+                users: [
+                  { handle: "@malangrider.id", link: "https://www.tiktok.com/@malangrider.id" },
+                  { handle: "@malangmotor.id", link: "https://www.tiktok.com/@malangmotor.id" },
+                ],
+              },
+              {
+                area: "Others",
+                users: [
+                  { handle: "@rentalday.molis", link: "https://www.tiktok.com/@rentalday.molis" },
+                  { handle: "@rentalday.student", link: "https://www.tiktok.com/@rentalday.student" },
+                ],
+              },
+            ].map((region, index) => (
               <div key={index}>
                 <div className="font-semibold mb-1">{region.area}</div>
                 <div className="flex flex-wrap gap-2">
                   {region.users.map((user, idx) => (
-                    <a key={idx} href={user.link} target="_blank" rel="noopener noreferrer" className="bg-black text-white px-4 py-1 rounded-full text-xs hover:underline">{user.handle}</a>
+                    <a
+                      key={idx}
+                      href={user.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-black text-white px-4 py-1 rounded-full text-xs hover:underline"
+                    >
+                      {user.handle}
+                    </a>
                   ))}
                 </div>
               </div>
@@ -124,14 +156,46 @@ const SosialMediaDropdown = ({ entity }) => {
             &#9650;
           </span>
         </button>
-        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${activeDropdown === "instagram" ? "max-h-[500px]" : "max-h-0"}`}>
+
+        <div className={`transition-all duration-300 overflow-hidden ${activeDropdown === "instagram" ? "max-h-[500px]" : "max-h-0"}`}>
           <div className="px-4 pb-4 pt-2 text-black space-y-4 text-sm">
-            {[{ area: "Bandung ( Mahasiswa )", users: [{ handle: "@rentalday.student", link: "https://instagram.com/rentalday.student" }] }].map((region, index) => (
+            {[
+              {
+                area: "Bandung",
+                users: [
+                  { handle: "@rentalday.id", link: "https://instagram.com/rentalday.id" },
+                  { handle: "@bandungrider.id", link: "https://instagram.com/bandungrider.id" },
+                  { handle: "@minrental.bandung", link: "https://instagram.com/minrental.bandung" },
+                ],
+              },
+              {
+                area: "Malang",
+                users: [
+                  { handle: "@malangrider.id", link: "https://instagram.com/malangrider.id" },
+                  { handle: "@malangmotor_id", link: "https://instagram.com/malangmotor_id" },
+                ],
+              },
+              {
+                area: "Others",
+                users: [
+                  { handle: "@rentalday.molis", link: "https://instagram.com/rentalday.molis" },
+                  { handle: "@rentalday.student", link: "https://instagram.com/rentalday.student" },
+                ],
+              },
+            ].map((region, index) => (
               <div key={index}>
                 <div className="font-semibold mb-1">{region.area}</div>
                 <div className="flex flex-wrap gap-2">
                   {region.users.map((user, idx) => (
-                    <a key={idx} href={user.link} target="_blank" rel="noopener noreferrer" className="bg-pink-500 text-white px-4 py-1 rounded-full text-xs hover:underline">{user.handle}</a>
+                    <a
+                      key={idx}
+                      href={user.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-pink-500 text-white px-4 py-1 rounded-full text-xs hover:underline"
+                    >
+                      {user.handle}
+                    </a>
                   ))}
                 </div>
               </div>
