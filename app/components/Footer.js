@@ -165,8 +165,8 @@ export default function Footer() {
               </a>
             </p>
             <p>
-              <Link href="tel:+6285724785060" className="hover:text-yellow-500">
-                (+62) 857-2478-5060
+              <Link href="tel:+6285136436020" className="hover:text-yellow-500">
+                (+62) 851-3643-6020
               </Link>
             </p>
             <p className="text-xs text-gray-600">Admin 1</p>
@@ -177,8 +177,8 @@ export default function Footer() {
             </p>
             <p className="text-xs text-gray-600">Admin 2</p>
             <p>
-              <Link href="tel:+6285136436020" className="hover:text-yellow-500">
-                (+62) 851-3643-6020
+              <Link href="tel:+628153135667" className="hover:text-yellow-500">
+                (+62) 815-3135-667
               </Link>
             </p>
             <p className="text-xs text-gray-600">Admin 3</p>
