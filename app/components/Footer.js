@@ -205,8 +205,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="bg-[#FFDD00] py-3 text-center text-xs text-black font-medium">
-        © 2025 PT Dahlia Global Indo. Seluruh hak cipta dilindungi
-        undang-undang.
+        © 2026 Dahlia Group. Seluruh hak cipta dilindungi undang-undang
       </div>
     </footer>
   );
