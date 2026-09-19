@@ -53,7 +53,7 @@ export default function HomePage() {
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold italic leading-tight">
                 Rentalday
               </h1>
-              <p className="mt-4 text-lg sm:text-xl md:text-2xl leading-relaxed">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
                 Temukan layanan rental terbaik dengan harga <br />
                 kompetitif dan proses cepat hanya pada <br />
                 layanan kami.
@@ -105,78 +105,70 @@ export default function HomePage() {
         </section>
 
         {/* --- Section Artikel Terbaru --- */}
-        <section className="bg-[#FFDD00] px-4 sm:px-8 md:px-20 py-12">
-          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6">
-            {/* Artikel Besar */}
-            {articles[0] && (
-              <div className="bg-white rounded-xl shadow-lg w-full lg:w-[2100px] h-auto lg:h-[500px] overflow-hidden">
-                <div className="w-full h-64 lg:h-80 relative">
-                  <Image
-                    src={`https://backend.ptdahliaglobalindo.id${articles[0].thumbnail}`}
-                    alt={articles[0].title}
-                    className="w-full h-full object-cover"
-                    width={500}
-                    height={500}
-                  />
-                  <Link
-                    href={`/artikel/${articles[0].slug}`}
-                    className="absolute bottom-3 right-3 bg-white text-sm text-black px-4 py-1 rounded-full shadow hover:bg-gray-200"
-                  >
-                    Lihat Detail Artikel
-                  </Link>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-bold mb-2 text-black">
-                    {articles[0].title}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
-                    {articles[0].content}
-                  </p>
-                </div>
+       <section className="bg-[#FFDD00] px-3 sm:px-6 md:px-12 lg:px-20 py-8 sm:py-12">
+        <div className="w-[94%] mx-auto flex flex-col lg:flex-row gap-4 sm:gap-6">
+          {articles[0] && (
+            <div className="bg-white rounded-xl shadow-lg w-full lg:w-2/3 h-auto lg:h-[600px] sm:h-[500px] overflow-hidden flex flex-col">
+              <div className="w-full h-40 md:h-60 sm:h-56 lg:h-80 relative flex-shrink-0">
+                <Image
+                  src={`https://backend.ptdahliaglobalindo.id${articles[0].thumbnail}`}
+                  alt={articles[0].title}
+                  className="w-full h-full object-cover"
+                  width={500}
+                  height={500}
+                />
+                <Link
+                  href={`/artikel/${articles[0].slug}`}
+                  className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 bg-white text-xs sm:text-sm text-black px-3 sm:px-4 py-1 rounded-full shadow hover:bg-gray-200"
+                >
+                  Lihat Detail
+                </Link>
               </div>
-            )}
-
-            {/* Dua Artikel Kecil - Mobile: Seperti Artikel Besar, Desktop: Tetap Kecil */}
-            <div className="w-full flex flex-col gap-4">
-              {[articles[1], articles[2]].map(
-                (item, index) =>
-                  item && (
-                    <Link
-                      key={index}
-                      href={`/artikel/${item.slug}`}
-                      className="bg-white rounded-xl overflow-hidden shadow-lg flex flex-col w-full"
-                    >
-                      <div className="w-full h-64 lg:h-30 relative">
-                        <Image
-                          src={`https://backend.ptdahliaglobalindo.id${item.thumbnail}`}
-                          alt={item.title}
-                          className="w-full h-full object-cover"
-                          width={500}
-                          height={500}
-                        />
-                      </div>
-                      <div className="p-4">
-                        <h4 className="text-base lg:text-sm font-semibold text-black line-clamp-2 mb-1">
-                          {item.title}
-                        </h4>
-                        <p className="text-sm lg:text-xs text-gray-600 line-clamp-2">
-                          {item.content}
-                        </p>
-                      </div>
-                    </Link>
-                  )
-              )}
-
-              {/* Tombol Jelajahi Artikel */}
-              <Link
-                href="/artikel"
-                className="bg-white text-center text-black font-semibold py-2 rounded-xl shadow hover:bg-yellow-100 mt-2"
-              >
-                Jelajahi Artikel
-              </Link>
+              <div className="p-3 sm:p-4 flex-1 flex flex-col">
+                <h3 className="text-base sm:text-lg font-bold mb-2 text-black line-clamp-2">{articles[0].title}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed line-clamp-3 flex-1">
+                  {articles[0].content}
+                </p>
+              </div>
             </div>
+          )}
+
+          <div className="w-full lg:w-1/3 flex flex-col gap-3 sm:gap-4">
+            {[articles[1], articles[2]].map(
+              (item, index) =>
+                item && (
+                  <Link
+                    key={index}
+                    href={`/artikel/${item.slug}`}
+                    className="bg-white rounded-xl overflow-hidden shadow-lg flex flex-col hover:shadow-xl transition"
+                  >
+                    <div className="w-full h-32 sm:h-36 relative flex-shrink-0">
+                      <Image
+                        src={`https://backend.ptdahliaglobalindo.id${item.thumbnail}`}
+                        alt={item.title}
+                        className="object-cover w-full h-full"
+                        width={500}
+                        height={500}
+                      />
+                    </div>
+                    <div className="p-3 flex-1">
+                      <h4 className="text-sm sm:text-base font-semibold text-black line-clamp-2 mb-1">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{item.content}</p>
+                    </div>
+                  </Link>
+                )
+            )}
+            <Link
+              href="/artikel"
+              className="bg-white text-center text-black font-semibold py-2 sm:py-3 rounded-xl shadow hover:bg-yellow-100 text-sm sm:text-base"
+            >
+              Jelajahi Artikel
+            </Link>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Produk Highlight */}
         <section className="bg-[#B40000] py-10 px-6 md:px-20 text-white">
@@ -216,8 +208,8 @@ export default function HomePage() {
         </section>
 
         {/* Kenapa Harus Memilih */}
-        <section className="bg-[#FFDD00] text-black px-4 py-10 md:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <section className="bg-yellow-300 text-black px-3 sm:px-6 md:px-8 py-8 sm:py-12">
+          <div className="w-[90%] md:w-[88%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-snug">
                 Kenapa Harus Memilih <br /> Rentalday?
@@ -240,7 +232,7 @@ export default function HomePage() {
                 ].map(([icon, text], i) => (
                   <div
                     key={i}
-                    className="bg-white text-black p-3 rounded shadow flex items-center gap-3 h-[90px] w-full max-w-full sm:max-w-[480px]"
+                    className="bg-white text-black p-3 rounded-xl shadow flex items-center gap-3 h-[90px] w-full"
                   >
                     {/* <Image src={`/images/${icon}`} alt="" className="w-16 h-16 object-contain" /> */}
                     <Image
@@ -266,7 +258,7 @@ export default function HomePage() {
               ].map(([icon, text], i) => (
                 <div
                   key={i}
-                  className="bg-white text-black p-3 rounded shadow flex items-center gap-3 h-[90px] w-full max-w-full sm:max-w-[480px]"
+                  className="bg-white text-black p-3 rounded-xl shadow flex items-center gap-3 h-[90px] w-full"
                 >
                   {/* <Image src={`/images/${icon}`} alt="" className="w-16 h-16 object-contain" /> */}
                   <Image
@@ -295,15 +287,16 @@ export default function HomePage() {
           }
         `}</style>
 
-          <p className="text-xl sm:text-2xl mb-5">
+          <p className="text-base sm:text-lg md:text-xl lg:text-xl mb-4 sm:mb-5 leading-relaxed px-2">
             Kami berkomitmen memberikan unit terbaik kepada penyewa,
             <br />
             karena kepuasan dan keselamatan Anda adalah prioritas kami.
           </p>
+
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 mb-8">
             NIKMATI PERJALANANMU
           </h1>
-
+          
           <div className="overflow-hidden w-full mb-8">
             <div
               className="flex gap-6 w-max"
