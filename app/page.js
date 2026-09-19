@@ -187,7 +187,7 @@ export default function HomePage() {
                 Rental Motor Indonesia
               </h3>
               <p className="text-sm sm:text-base leading-relaxed">
-                Sebagai bagian dari ekosistem layanan PT Dahlia Global Indo,
+                Sebagai bagian dari ekosistem layanan PT Dahlia Group,
                 Rentalday hadir untuk menjawab kebutuhan mobilitas masyarakat
                 urban yang dinamis dengan menyediakan layanan rental motor yang
                 praktis, terjangkau, dan dapat diandalkan.
