@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AnimatePage from "./components/AnimatePage";
 import Image from "next/image";
+import { apiFetch, assetUrl, ENTITY } from "@/client/ApiClient";
 
 function formatTanggalIndo(tanggalString) {
   const tanggal = new Date(tanggalString);
@@ -19,7 +20,7 @@ export default function HomePage() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch("https://backend.ptdahliaglobalindo.id/article?entity=RENTAL_MOTOR")
+    apiFetch(`/article?entity=${ENTITY}`)
       .then((res) => res.json())
       .then((data) => {
         setArticles(data.slice(0, 3)); // Ambil 3 artikel pertama
@@ -111,7 +112,7 @@ export default function HomePage() {
             <div className="bg-white rounded-xl shadow-lg w-full lg:w-2/3 h-auto lg:h-[600px] sm:h-[500px] overflow-hidden flex flex-col">
               <div className="w-full h-40 md:h-60 sm:h-56 lg:h-80 relative flex-shrink-0">
                 <Image
-                  src={`https://backend.ptdahliaglobalindo.id${articles[0].thumbnail}`}
+                  src={assetUrl(articles[0].thumbnail)}
                   alt={articles[0].title}
                   className="w-full h-full object-cover"
                   width={500}

@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
+import { apiFetch } from "@/client/ApiClient";
+
 const SosialMediaDropdown = ({ entity }) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [admins, setAdmins] = useState([]);
@@ -14,7 +16,7 @@ const SosialMediaDropdown = ({ entity }) => {
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const res = await fetch("https://backend.ptdahliaglobalindo.id/whatsapp-admins"); // backend lokal
+        const res = await apiFetch("/whatsapp-admins");
         const data = await res.json();
         setAdmins(data);
       } catch (err) {
@@ -26,7 +28,7 @@ const SosialMediaDropdown = ({ entity }) => {
 
   const handleWhatsappClick = async (admin) => {
     try {
-      await fetch("https://backend.ptdahliaglobalindo.id/whatsapp-clicks", {
+      await apiFetch("/whatsapp-clicks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
