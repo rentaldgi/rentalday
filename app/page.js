@@ -20,10 +20,10 @@ export default function HomePage() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    apiFetch(`/article?entity=${ENTITY}`)
+    apiFetch(`/article?entity=${ENTITY}&page=1&limit=3`)
       .then((res) => res.json())
       .then((data) => {
-        setArticles(data.slice(0, 3)); // Ambil 3 artikel pertama
+        setArticles(Array.isArray(data) ? data.slice(0, 3) : (data.data ?? []));
       });
   }, []);
 
@@ -128,7 +128,7 @@ export default function HomePage() {
               <div className="p-3 sm:p-4 flex-1 flex flex-col">
                 <h3 className="text-base sm:text-lg font-bold mb-2 text-black line-clamp-2">{articles[0].title}</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed line-clamp-3 flex-1">
-                  {articles[0].content}
+                  {articles[0].excerpt ?? articles[0].content}
                 </p>
               </div>
             </div>
@@ -156,7 +156,7 @@ export default function HomePage() {
                       <h4 className="text-sm sm:text-base font-semibold text-black line-clamp-2 mb-1">
                         {item.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{item.content}</p>
+                      <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{item.excerpt ?? item.content}</p>
                     </div>
                   </Link>
                 )

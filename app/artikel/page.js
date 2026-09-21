@@ -9,36 +9,57 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { apiFetch, assetUrl, ENTITY } from "@/client/ApiClient";
 
+const ITEMS_PER_PAGE = 6;
+
 export default function Artikel() {
   const [articles, setArticles] = useState([]);
+  const [meta, setMeta] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    apiFetch(`/article?entity=${ENTITY}`)
-      .then((res) => res.json())
+    const timeout = setTimeout(() => setSearchQuery(searchTerm.trim()), 300);
+    return () => clearTimeout(timeout);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    const params = new URLSearchParams({
+      entity: ENTITY,
+      page: String(currentPage),
+      limit: String(ITEMS_PER_PAGE),
+    });
+    if (searchQuery) params.set("search", searchQuery);
+
+    setLoading(true);
+    apiFetch(`/article?${params}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Gagal fetch artikel");
+        return res.json();
+      })
       .then((data) => {
-        setArticles(data);
+        // Fallback sementara untuk backend production versi lama yang masih
+        // mengirim array. Setelah backend baru live, filter/pagination di BE.
+        if (Array.isArray(data)) {
+          const filtered = data.filter((article) =>
+            article.title.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+          setArticles(filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE));
+          setMeta({ lastPage: Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1 });
+          return;
+        }
+
+        setArticles(data.data ?? []);
+        setMeta(data.meta ?? null);
       })
       .catch((err) => {
         console.error("Gagal fetch artikel:", err);
+        setArticles([]);
+        setMeta(null);
       })
       .finally(() => setLoading(false));
-  }, []);
-
-  useEffect(() => {
-    const updateItemsPerPage = () => {
-      const isMobile = window.innerWidth < 640;
-      setItemsPerPage(isMobile ? 3 : 6);
-      setCurrentPage(1);
-    };
-
-    updateItemsPerPage();
-    window.addEventListener("resize", updateItemsPerPage);
-    return () => window.removeEventListener("resize", updateItemsPerPage);
-  }, []);
+  }, [currentPage, searchQuery]);
 
   function formatTanggalIndo(tanggalString) {
     const tanggal = new Date(tanggalString);
@@ -51,7 +72,8 @@ export default function Artikel() {
 
   function highlightKeyword(text, keyword) {
     if (!keyword) return text;
-    const regex = new RegExp(`(${keyword})`, "gi");
+    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`(${escapedKeyword})`, "gi");
     const parts = text.split(regex);
     return parts.map((part, index) =>
       part.toLowerCase() === keyword.toLowerCase() ? (
@@ -67,17 +89,7 @@ export default function Artikel() {
     );
   }
 
-  const filteredArticles = articles.filter((article) =>
-    article.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentArticles = filteredArticles.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  const totalPages = meta?.lastPage ?? 1;
 
   const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
   const handleNext = () =>
@@ -131,13 +143,13 @@ export default function Artikel() {
 
         {/* Articles Grid */}
         <div className="bg-[#B40000] px-4 sm:px-8 md:px-20 py-12 shadow-xl min-h-[50vh]">
-          {filteredArticles.length === 0 ? (
+          {articles.length === 0 ? (
             <div className="text-center text-white text-base py-10">
               Tidak ada artikel yang cocok dengan pencarian.
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentArticles.map((article) => (
+              {articles.map((article) => (
                 <Link href={`/artikel/${article.slug}`} key={article.id}>
                   <div className="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 shadow-xl flex flex-col h-[320px]">
                     <div className="w-full h-40 relative overflow-hidden">
@@ -155,7 +167,7 @@ export default function Artikel() {
                           {highlightKeyword(article.title, searchTerm)}
                         </h3>
                         <p className="text-gray-600 text-sm line-clamp-2 mb-2">
-                          {article.content}
+                          {article.excerpt ?? article.content}
                         </p>
                       </div>
                       <p className="text-xs text-gray-500 text-right mt-auto">
@@ -169,7 +181,7 @@ export default function Artikel() {
           )}
 
           {/* Pagination */}
-          {totalPages > 1 && filteredArticles.length > 0 && (
+          {totalPages > 1 && articles.length > 0 && (
             <div className="flex justify-center items-center gap-4 mt-10">
               <button
                 onClick={handlePrev}

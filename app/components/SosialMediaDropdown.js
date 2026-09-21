@@ -16,7 +16,7 @@ const SosialMediaDropdown = ({ entity }) => {
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const res = await apiFetch("/whatsapp-admins");
+        const res = await apiFetch(`/whatsapp-admins?entity=${encodeURIComponent(entity)}`);
         const data = await res.json();
         setAdmins(data);
       } catch (err) {
@@ -24,7 +24,7 @@ const SosialMediaDropdown = ({ entity }) => {
       }
     };
     fetchAdmins();
-  }, []);
+  }, [entity]);
 
   const handleWhatsappClick = async (admin) => {
     try {
