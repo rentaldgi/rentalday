@@ -10,21 +10,21 @@ import Image from "next/image";
 const testimonials = [
   {
     name: "Riyadatunnisa",
-    role: "Mahasiswi",
+    location: "Bandung",
     video: "/videos/testimoni-rental-1.mp4",
-    text: "Motornya nyaman banget, dapet fasilitas keamanan juga. Untuk pengambilan motor bisa diantar sesuai dengan alamat persetujuan, mantap.",
+    text: "Rute ke Pool Bandung. Tonton video di atas untuk panduan jalur tercepat dari Stasiun Bandung. Gak bakal nyasar!",
   },
   {
     name: "Ayu Nadya",
-    role: "Wisatawan",
+    location: "Malang",
     video: "/videos/testimoni-rental-2.mp4",
-    text: "Pelayanan sangat memuaskan, motor dalam kondisi prima dan proses sewa mudah sekali. Akan sewa lagi next time!",
+    text: "Petunjuk Lokasi Malang. Bingung cari lokasinya? Intip video panduan rute ini biar perjalananmu lebih lancar.",
   },
   {
     name: "Cahaya Insani",
-    role: "Mahasiswi",
+    location: "Bogor",
     video: "/videos/testimoni-rental-3.mp4",
-    text: "Harga terjangkau untuk kualitas motor yang diberikan. Proses pengantaran cepat dan petugasnya ramah.",
+    text: "Cara ke Pool Bogor. Ikuti petunjuk arah di video ini biar gampang sampai tempat pengambilan unit.",
   },
 ];
 
@@ -33,13 +33,13 @@ export default function Testimonials() {
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
+      prev === 0 ? testimonials.length - 1 : prev - 1,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) =>
-      prev === testimonials.length - 1 ? 0 : prev + 1
+      prev === testimonials.length - 1 ? 0 : prev + 1,
     );
   };
 
@@ -57,7 +57,7 @@ export default function Testimonials() {
         <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Judul HP */}
           <h2 className="text-2xl md:hidden font-bold text-center mb-6">
-            Kata Mereka Tentang Rentalday
+            Tentang Rentalday
           </h2>
 
           <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-10">
@@ -74,10 +74,7 @@ export default function Testimonials() {
                 <div className="flex items-center mt-3 justify-between">
                   <div className="flex items-center gap-2">
                     <div className="text-md font-semibold">
-                      {testimonials[currentIndex].name}
-                    </div>
-                    <div className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
-                      {testimonials[currentIndex].role}
+                      {testimonials[currentIndex].location}
                     </div>
                   </div>
                 </div>
@@ -97,7 +94,6 @@ export default function Testimonials() {
                     height={56} // sesuaikan juga, agar proporsional
                     className="h-14 object-contain"
                   />
-
                 </div>
               </div>
 
@@ -120,7 +116,7 @@ export default function Testimonials() {
             <div className="flex flex-col items-start w-full md:w-auto">
               {/* Judul Desktop */}
               <h2 className="hidden md:block text-4xl font-bold text-white ml-2 md:ml-8 mb-4">
-                Kata Mereka Tentang Rentalday
+                Tentang Rentalday
               </h2>
 
               <div className="hidden md:flex mt-2 flex-col md:flex-row gap-8 md:ml-8">
@@ -144,9 +140,8 @@ export default function Testimonials() {
                     </div>
                     <div className="flex items-center mt-3 justify-between">
                       <div className="flex items-center gap-2">
-                        <div className="text-md font-semibold">{item.name}</div>
-                        <div className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
-                          {item.role}
+                        <div className="text-md font-semibold">
+                          {item.location}
                         </div>
                       </div>
                     </div>
@@ -160,15 +155,14 @@ export default function Testimonials() {
                         className="h-14 object-contain"
                       /> */}
                       <div className="relative w-24 h-14">
-                      <Image
-                        src="/images/logo_rentalday.png"
-                        alt="Logo"
-                        width={100}
-                        height={100}
-                        className="h-14 object-contain"
-                      />
+                        <Image
+                          src="/images/logo_rentalday.png"
+                          alt="Logo"
+                          width={100}
+                          height={100}
+                          className="h-14 object-contain"
+                        />
                       </div>
-
                     </div>
                   </div>
                 ))}
