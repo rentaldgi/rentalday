@@ -71,14 +71,21 @@ export default function DetailArtikel() {
               <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-4">
                 {artikel.data.title}
               </h1>
-              {(artikel.data.content || "").split("\n").map((p, i) => (
-                <p
-                  key={i}
-                  className="text-gray-700 text-sm sm:text-base mb-4 text-justify leading-relaxed"
-                >
-                  {p.trim()}
-                </p>
-              ))}
+              {/<[a-z][\s\S]*>/i.test(artikel.data.content || "") ? (
+                <div
+                  className="prose prose-sm sm:prose-base max-w-none text-gray-700 leading-relaxed [&_h1]:text-2xl [&_h1]:font-bold [&_h1]:my-4 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:my-3 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:my-2 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_blockquote]:border-l-4 [&_blockquote]:border-yellow-400 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-4 [&_a]:text-yellow-600 [&_a]:underline"
+                  dangerouslySetInnerHTML={{ __html: artikel.data.content }}
+                />
+              ) : (
+                (artikel.data.content || "").split("\n").map((p, i) => (
+                  <p
+                    key={i}
+                    className="text-gray-700 text-sm sm:text-base mb-4 text-justify leading-relaxed"
+                  >
+                    {p.trim()}
+                  </p>
+                ))
+              )}
             </div>
           </div>
         </div>
