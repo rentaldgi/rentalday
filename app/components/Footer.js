@@ -119,87 +119,50 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Kolom 2: Halaman + Kontak */}
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          {/* Halaman */}
-          <div>
-            <h4 className="font-semibold text-gray-800 mb-2">Halaman</h4>
-            <ul className="space-y-1">
-              <li>
-                <Link href="/" className="hover:text-yellow-500">
-                  Beranda
-                </Link>
-              </li>
-              <li>
-                <Link href="/Linkrtikel" className="hover:text-yellow-500">
-                  Artikel
-                </Link>
-              </li>
-              <li>
-                <Link href="/DaftarUnit" className="hover:text-yellow-500">
-                  Daftar Motor
-                </Link>
-              </li>
-              <li>
-                <Link href="/Testimoni" className="hover:text-yellow-500">
-                  Testimoni
-                </Link>
-              </li>
-              <li>
-                <Link href="/Kontak" className="hover:text-yellow-500">
-                  Kontak
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Kontak */}
-          <div>
-            <h4 className="font-semibold text-gray-800 mb-2">Kontak Kami</h4>
-            <p className="mb-1">
-              <a
-                href="mailto:rentaldaybandung@gmail.com"
-                className="hover:text-yellow-500"
-              >
-                rentaldaybandung@gmail.com
-              </a>
-            </p>
-            <p>
-              <Link href="tel:+6285136436020" className="hover:text-yellow-500">
-                (+62) 851-3643-6020
+        {/* Kolom 2: Halaman */}
+        <div className="text-sm">
+          <h4 className="font-semibold text-gray-800 mb-2">Halaman</h4>
+          <ul className="space-y-1">
+            <li>
+              <Link href="/" className="hover:text-yellow-500">
+                Beranda
               </Link>
-            </p>
-            <p className="text-xs text-gray-600">Admin 1</p>
-            <p>
-              <Link href="tel:+6287825171899" className="hover:text-yellow-500">
-                (+62) 878-2517-1899
+            </li>
+            <li>
+              <Link href="/Linkrtikel" className="hover:text-yellow-500">
+                Artikel
               </Link>
-            </p>
-            <p className="text-xs text-gray-600">Admin 2</p>
-            <p>
-              <Link href="tel:+628153135667" className="hover:text-yellow-500">
-                (+62) 815-3135-667
+            </li>
+            <li>
+              <Link href="/DaftarUnit" className="hover:text-yellow-500">
+                Daftar Motor
               </Link>
-            </p>
-            <p className="text-xs text-gray-600">Admin 3</p>
-          </div>
+            </li>
+            <li>
+              <Link href="/Testimoni" className="hover:text-yellow-500">
+                Testimoni
+              </Link>
+            </li>
+            <li>
+              <Link href="/Kontak" className="hover:text-yellow-500">
+                Kontak
+              </Link>
+            </li>
+          </ul>
         </div>
 
-        {/* Kolom 3: Alamat */}
+        {/* Kolom 2: Cabang */}
         <div className="text-sm">
-          <h4 className="font-semibold text-gray-800 mb-2">Alamat</h4>
-          <p>
-            <Link
-              href="https://www.google.com/maps?q=Jl.+Kebon+Kawung+No.49,+Pasir+Kaliki,+Cicendo,+Bandung,+Jawa+Barat"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-yellow-500"
-            >
-              Jl. Kebon Kawung No.49, Pasir Kaliki,
-              <br />
-              Kec. Cicendo, Kota Bandung, Jawa Barat 40171, Indonesia
-            </Link>
-          </p>
+          <h4 className="font-semibold text-gray-800 mb-2">Cabang</h4>
+          <ul className="space-y-1">
+            {["Bandung", "Bogor", "Malang"].map((cabang) => (
+              <li key={cabang}>
+                <Link href="/Kontak#sosial-media-maps" className="hover:text-yellow-500">
+                  {cabang}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
+import { apiFetch } from "@/client/ApiClient";
+
 const SosialMediaDropdown = ({ entity }) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [admins, setAdmins] = useState([]);
@@ -14,7 +16,7 @@ const SosialMediaDropdown = ({ entity }) => {
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const res = await fetch("https://backend.ptdahliaglobalindo.id/whatsapp-admins"); // backend lokal
+        const res = await apiFetch(`/whatsapp-admins?entity=${encodeURIComponent(entity)}`);
         const data = await res.json();
         setAdmins(data);
       } catch (err) {
@@ -22,11 +24,11 @@ const SosialMediaDropdown = ({ entity }) => {
       }
     };
     fetchAdmins();
-  }, []);
+  }, [entity]);
 
   const handleWhatsappClick = async (admin) => {
     try {
-      await fetch("https://backend.ptdahliaglobalindo.id/whatsapp-clicks", {
+      await apiFetch("/whatsapp-clicks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -102,22 +104,18 @@ const SosialMediaDropdown = ({ entity }) => {
                 area: "Bandung",
                 users: [
                   { handle: "@rentaldaybandung", link: "https://www.tiktok.com/@rentaldaybandung" },
-                  { handle: "@bandungrider", link: "https://www.tiktok.com/@bandungrider" },
-                  { handle: "@minrental.bandung", link: "https://www.tiktok.com/@minrental.bandung" },
                 ],
               },
               {
                 area: "Malang",
                 users: [
                   { handle: "@malangrider.id", link: "https://www.tiktok.com/@malangrider.id" },
-                  { handle: "@malangmotor.id", link: "https://www.tiktok.com/@malangmotor.id" },
                 ],
               },
               {
-                area: "Others",
+                area: "Bogor",
                 users: [
-                  { handle: "@rentalday.molis", link: "https://www.tiktok.com/@rentalday.molis" },
-                  { handle: "@rentalday.student", link: "https://www.tiktok.com/@rentalday.student" },
+                  { handle: "@rentaldaybogor", link: "https://www.tiktok.com/@rentaldaybogor" },
                 ],
               },
             ].map((region, index) => (
@@ -164,22 +162,18 @@ const SosialMediaDropdown = ({ entity }) => {
                 area: "Bandung",
                 users: [
                   { handle: "@rentalday.id", link: "https://instagram.com/rentalday.id" },
-                  { handle: "@bandungrider.id", link: "https://instagram.com/bandungrider.id" },
-                  { handle: "@minrental.bandung", link: "https://instagram.com/minrental.bandung" },
                 ],
               },
               {
                 area: "Malang",
                 users: [
                   { handle: "@malangrider.id", link: "https://instagram.com/malangrider.id" },
-                  { handle: "@malangmotor_id", link: "https://instagram.com/malangmotor_id" },
                 ],
               },
               {
-                area: "Others",
+                area: "Bogor",
                 users: [
-                  { handle: "@rentalday.molis", link: "https://instagram.com/rentalday.molis" },
-                  { handle: "@rentalday.student", link: "https://instagram.com/rentalday.student" },
+                  { handle: "@rentaldaybogor_", link: "https://instagram.com/rentaldaybogor_" },
                 ],
               },
             ].map((region, index) => (

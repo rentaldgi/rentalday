@@ -1,24 +1,19 @@
-const BASE_URL = 'https://backend.ptdahliaglobalindo.id' // be
+// Semua request ke backend lewat file ini.
+// Untuk testing lokal, buat file .env.local berisi:
+//   NEXT_PUBLIC_API_URL=http://localhost:3333
+export const BASE_URL = (
+  process.env.NEXT_PUBLIC_API_URL || "https://backend.ptdahliaglobalindo.id"
+).replace(/\/+$/, "");
 
-export async function sendContactForm(data) {
-  try {
-    const response = await fetch(`${BASE_URL}/contact`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+export const ENTITY = "RENTAL_MOTOR";
 
-    const result = await response.json()
+export function apiFetch(path, options = {}) {
+  return fetch(`${BASE_URL}${path}`, options);
+}
 
-    if (!response.ok) {
-      throw new Error(result.message || 'Gagal mengirim pesan')
-    }
-
-    return result
-  } catch (error) {
-    console.error('Error saat mengirim form:', error.message)
-    throw error
-  }
+// URL file dari backend (thumbnail artikel, dll), contoh: assetUrl("/uploads/foto.jpg")
+export function assetUrl(path) {
+  if (!path) return "";
+  if (/^https?:\/\//.test(path)) return path;
+  return `${BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
 }

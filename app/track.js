@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
+import { apiFetch, ENTITY } from "@/client/ApiClient";
+
 export default function Tracker() {
   const pathname = usePathname();
 
@@ -15,11 +17,11 @@ export default function Tracker() {
     if (!viewedPages.includes(pathname)) {
       async function trackView() {
         try {
-          await fetch("https://backend.ptdahliaglobalindo.id/website-views", {
+          await apiFetch("/website-views", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              entity: "RENTAL_MOTOR",
+              entity: ENTITY,
               path: pathname,
             }),
           });
