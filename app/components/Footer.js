@@ -44,7 +44,7 @@ export default function Footer() {
               />
             </Link>
 
-            <Link
+            {/* <Link
               href="https://wa.me/628153135667"
               target="_blank"
               rel="noopener noreferrer"
@@ -56,7 +56,8 @@ export default function Footer() {
                 height={28}
                 className="w-7 h-7"
               />
-            </Link>
+            </Link> */}
+            
             {/* Instagram */}
             <Link
               href="https://www.instagram.com/rentalday.id?igsh=ZzRzb3hybDNldDR3"
