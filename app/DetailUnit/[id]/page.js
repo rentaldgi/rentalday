@@ -3,7 +3,6 @@ import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import AnimatePage from "@/app/components/AnimatePage";
 import Image from "next/image";
-import { generateWhatsAppLink } from "@/data/adminContacts";
 
 export default function DetailUnit({ params }) {
   const unit = units.find((u) => u.id === parseInt(params.id));
@@ -98,7 +97,7 @@ export default function DetailUnit({ params }) {
 
             <div className="pt-2">
               <a
-                href={generateWhatsAppLink(unit)}
+                href="https://l.instagram.com/?u=http%3A%2F%2Flinkbio.co%2Fadminrentalday%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAcGRvZgJzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAadIIXGtZJvbTZW_wGytAKq-xWcp5l_Hza7_SSGE8x9akumnH-xW2_eckVlaDw_aem_dq0kALDzJrKef4Rx-HH3Ng&e=AUCZbZOn0crc-A59k1bTLniubmibEphFMDyhzlzMn_HQs7QmwkOqjOCV0JOqulIW9oBG6FMxIRCYzrEHJVz9hDBguwG5dqVxdjTlLfpMnUCd7kpTe2bO3pp6OI7GSz5eQVnPRyo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
